@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import *
 
 app = Flask(__name__)
 
@@ -9,6 +9,14 @@ def start():
 @app.route('/registrazione')
 def registrazione():
     return render_template('registrazione.html')
+
+@app.route('/registrazione', methods=['POST'])
+def registrazione_post():
+    nome = request.form['nome']
+    cognome = request.form['cognome']
+    email = request.form['email']
+    
+    return redirect(url_for('login'))
 
 if (__name__ == '__main__'):
     # app.run(port=80)
